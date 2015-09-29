@@ -2,7 +2,7 @@ import UIKit
 import AsyncDisplayKit
 import Alamofire
 
-class UserViewController: UIViewController, NetworkingDelegate {
+class UserViewController: UIViewController {
 
     @IBOutlet var loadingView: UIView!
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)

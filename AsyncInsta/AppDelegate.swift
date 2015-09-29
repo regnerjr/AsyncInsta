@@ -3,8 +3,17 @@ import UIKit
 enum Notifications: String {
     case CloseSafariViewController
 }
+
 enum Defaults: String {
     case AuthToken
+}
+
+struct TokenURLParser {
+    static func parse(url: NSURL) {
+        let comps = url.absoluteString.componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString: "="))
+        let auth_token = comps[1]
+        NSUserDefaults.standardUserDefaults().setObject(auth_token, forKey: Defaults.AuthToken.rawValue)
+    }
 }
 
 @UIApplicationMain
@@ -34,10 +43,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-struct TokenURLParser {
-    static func parse(url: NSURL) {
-        let comps = url.absoluteString.componentsSeparatedByCharactersInSet(NSCharacterSet(charactersInString: "="))
-        let auth_token = comps[1]
-        NSUserDefaults.standardUserDefaults().setObject(auth_token, forKey: Defaults.AuthToken.rawValue)
-    }
-}

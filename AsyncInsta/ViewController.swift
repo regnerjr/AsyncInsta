@@ -1,13 +1,13 @@
-//import SwiftyJSON
-//import AsyncDisplayKit
-//import Alamofire
 import SafariServices
-
 import UIKit
 
+let client_id = "c10d736ee85e4d2aa6b44e7032a98009"
+let redirect_uri = "asyncinsta://"
 
-let loginURL = "https://api.instagram.com/oauth/authorize/?client_id=c10d736ee85e4d2aa6b44e7032a98009&redirect_uri=asyncinsta://&response_type=token"
-
+let loginURL = "https://api.instagram.com/oauth/authorize/?" +
+    "client_id=" + client_id +
+    "&redirect_uri=" + redirect_uri +
+    "&response_type=token"
 
 class ViewController: UIViewController, SFSafariViewControllerDelegate {
 
@@ -22,34 +22,35 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButton.layer.cornerRadius = 5
         center.addObserver(self, selector: "safariLoginComplete:", name: Notifications.CloseSafariViewController.rawValue, object: nil)
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        print("ViewController View Will Appear")
     }
 
     func safariLoginComplete(notification: NSNotification){
         //ensure we really have an auth token 
         guard let _ = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.AuthToken.rawValue) else {
-            // crap no token!
             return
         }
         self.svc.dismissViewControllerAnimated(true, completion: { [weak self] in
-            print("dismissed SVC in Notification Handler")
             self?.performSegueWithIdentifier("UserIsLoggedIn", sender: nil)
         })
         loginButton.hidden = true
 
     }
     
-    
-
     @IBAction func showLoginVC(sender:UIButton){
         svc.delegate = self
-        presentViewController(svc, animated: true, completion: {print("Completed showing Safari View Controller")})
+        presentViewController(svc, animated: true, completion: nil)
     }
 
+    @IBAction func dontWantToLogin(sender: UIButton) {
+        let alert = UIAlertController(title: "Too Bad", message: "This App Currently only support the Authenticated Instagram Information", preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "Oh Well", style: .Default, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
+    // If someone presses the done button on the SafariViewController
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }

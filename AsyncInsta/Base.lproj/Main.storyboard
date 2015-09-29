@@ -19,22 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qv-9U-D2Q">
-                                <rect key="frame" x="151" y="257" width="300" height="85"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="4Qv-9U-D2Q" secondAttribute="height" multiplier="595:169" id="qeX-27-ug1"/>
-                                </constraints>
-                                <state key="normal" image="Instagram"/>
-                                <connections>
-                                    <action selector="showLoginVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D4S-Ok-uBo"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xg-Er-dlk">
                                 <rect key="frame" x="214" y="554" width="173" height="26"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                 <state key="normal" title="I don't really like to log in to stuff"/>
+                                <connections>
+                                    <action selector="dontWantToLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6p9-Rm-S17"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTx-Fr-5MN">
                                 <rect key="frame" x="258" y="228" width="84" height="21"/>
@@ -43,6 +35,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qv-9U-D2Q">
+                                <rect key="frame" x="150" y="257" width="300" height="85"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.2666666667" green="0.4431372549" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Qv-9U-D2Q" secondAttribute="height" multiplier="595:169" id="qeX-27-ug1"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <size key="titleShadowOffset" width="14" height="14"/>
+                                <state key="normal" image="Instagram">
+                                    <color key="titleShadowColor" red="0.26666666666666666" green="0.44313725490196076" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="showLoginVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D4S-Ok-uBo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
