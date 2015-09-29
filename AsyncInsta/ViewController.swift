@@ -1,10 +1,7 @@
-//
-//  ViewController.swift
-//  AsyncInsta
-//
-//  Created by John Regner on 9/28/15.
-//  Copyright © 2015 johnregner. All rights reserved.
-//
+import SwiftyJSON
+import AsyncDisplayKit
+import Alamofire
+import SafariServices
 
 import UIKit
 
