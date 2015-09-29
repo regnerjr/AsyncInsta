@@ -27,6 +27,9 @@
 		52B387BC1BBA0729001A4C41 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387BA1BBA0729001A4C41 /* Nimble.framework */; };
 		52B387BD1BBA0729001A4C41 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387BB1BBA0729001A4C41 /* Quick.framework */; };
 		52B387C01BBA0B4A001A4C41 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B387BF1BBA0B4A001A4C41 /* Persistence.swift */; settings = {ASSET_TAGS = (); }; };
+		52B387C41BBA6ABD001A4C41 /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B387C31BBA6ABD001A4C41 /* PopularViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		52B387C61BBADBD1001A4C41 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B387C51BBADBD1001A4C41 /* Networking.swift */; settings = {ASSET_TAGS = (); }; };
+		52B387C81BBB1501001A4C41 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B387C71BBB1501001A4C41 /* UserViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,9 @@
 		52B387BA1BBA0729001A4C41 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = ../Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		52B387BB1BBA0729001A4C41 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = ../Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		52B387BF1BBA0B4A001A4C41 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		52B387C31BBA6ABD001A4C41 /* PopularViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		52B387C51BBADBD1001A4C41 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		52B387C71BBB1501001A4C41 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,8 +161,11 @@
 			children = (
 				52B387BF1BBA0B4A001A4C41 /* Persistence.swift */,
 				52552A141BB9FC82007C27B1 /* AppDelegate.swift */,
+				52B387C51BBADBD1001A4C41 /* Networking.swift */,
 				52552A161BB9FC82007C27B1 /* ViewController.swift */,
 				52552A181BB9FC82007C27B1 /* Main.storyboard */,
+				52B387C71BBB1501001A4C41 /* UserViewController.swift */,
+				52B387C31BBA6ABD001A4C41 /* PopularViewController.swift */,
 				52552A1E1BB9FC82007C27B1 /* Assets.xcassets */,
 				52552A201BB9FC82007C27B1 /* LaunchScreen.storyboard */,
 				52552A231BB9FC82007C27B1 /* Info.plist */,
@@ -352,8 +361,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B387C81BBB1501001A4C41 /* UserViewController.swift in Sources */,
 				52552A1D1BB9FC82007C27B1 /* AsyncInsta.xcdatamodeld in Sources */,
+				52B387C41BBA6ABD001A4C41 /* PopularViewController.swift in Sources */,
 				52B387C01BBA0B4A001A4C41 /* Persistence.swift in Sources */,
+				52B387C61BBADBD1001A4C41 /* Networking.swift in Sources */,
 				52552A171BB9FC82007C27B1 /* ViewController.swift in Sources */,
 				52552A151BB9FC82007C27B1 /* AppDelegate.swift in Sources */,
 			);

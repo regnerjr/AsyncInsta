@@ -2,6 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,29 +19,154 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qv-9U-D2Q">
-                                <rect key="frame" x="227" y="285" width="146" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qv-9U-D2Q">
+                                <rect key="frame" x="151" y="257" width="300" height="85"/>
                                 <animations/>
-                                <state key="normal" title="Login With Instagram"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Qv-9U-D2Q" secondAttribute="height" multiplier="595:169" id="qeX-27-ug1"/>
+                                </constraints>
+                                <state key="normal" image="Instagram"/>
                                 <connections>
                                     <action selector="showLoginVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D4S-Ok-uBo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xg-Er-dlk">
+                                <rect key="frame" x="214" y="554" width="173" height="26"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <state key="normal" title="I don't really like to log in to stuff"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log In with" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTx-Fr-5MN">
+                                <rect key="frame" x="258" y="228" width="84" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8Xg-Er-dlk" secondAttribute="bottom" constant="20" id="77u-fc-eI1"/>
+                            <constraint firstItem="4Qv-9U-D2Q" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.5" id="9co-wk-ncd"/>
+                            <constraint firstItem="8Xg-Er-dlk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E7z-79-ByX"/>
                             <constraint firstItem="4Qv-9U-D2Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KsQ-Cc-bRA"/>
                             <constraint firstItem="4Qv-9U-D2Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Y0g-EM-NDv"/>
+                            <constraint firstItem="4Qv-9U-D2Q" firstAttribute="top" secondItem="wTx-Fr-5MN" secondAttribute="bottom" constant="8" id="de1-0G-TsQ"/>
+                            <constraint firstItem="wTx-Fr-5MN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uDv-42-4Kb"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="4Qv-9U-D2Q" id="3Sw-UG-sbF"/>
+                        <segue destination="Xou-Fu-u1q" kind="show" identifier="UserIsLoggedIn" id="TvV-NK-GPq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="373" y="513"/>
         </scene>
+        <!--User View Controller-->
+        <scene sceneID="Rmz-Zh-p7e">
+            <objects>
+                <viewController id="Xou-Fu-u1q" customClass="UserViewController" customModule="AsyncInsta" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jge-yN-kCj"/>
+                        <viewControllerLayoutGuide type="bottom" id="YTA-24-pnh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="roe-qD-xfK">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pT7-Rp-q9u">
+                                <rect key="frame" x="201" y="240" width="198" height="120"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hzq-G8-BIq">
+                                <rect key="frame" x="20" y="28" width="198" height="198"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hzq-G8-BIq" secondAttribute="height" id="ou9-qi-Oft"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHB-Sn-kOe">
+                                <rect key="frame" x="226" y="28" width="125" height="33"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtL-Uk-WKv">
+                                <rect key="frame" x="226" y="69" width="21" height="17"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5aH-0E-GUF">
+                                <rect key="frame" x="150" y="420" width="300" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.44313725490196076" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="View Popular Pictures">
+                                    <color key="titleColor" red="0.88235294117647056" green="0.9137254901960784" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BLX-sy-3F7" kind="show" id="wx0-3Y-anE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pT7-Rp-q9u" firstAttribute="width" secondItem="roe-qD-xfK" secondAttribute="width" multiplier="0.33" id="6PV-Dr-JAS"/>
+                            <constraint firstItem="Hzq-G8-BIq" firstAttribute="width" secondItem="roe-qD-xfK" secondAttribute="width" multiplier="0.33" id="6cv-os-e65"/>
+                            <constraint firstItem="5aH-0E-GUF" firstAttribute="centerX" secondItem="roe-qD-xfK" secondAttribute="centerX" id="Djh-6x-12l"/>
+                            <constraint firstItem="Hzq-G8-BIq" firstAttribute="top" secondItem="jge-yN-kCj" secondAttribute="bottom" constant="8" id="EKL-nU-zFd"/>
+                            <constraint firstItem="HtL-Uk-WKv" firstAttribute="top" secondItem="vHB-Sn-kOe" secondAttribute="bottom" constant="8" id="FqV-gi-ZpC"/>
+                            <constraint firstItem="pT7-Rp-q9u" firstAttribute="height" secondItem="roe-qD-xfK" secondAttribute="height" multiplier="0.2" id="J0V-t3-4Xg"/>
+                            <constraint firstItem="HtL-Uk-WKv" firstAttribute="leading" secondItem="Hzq-G8-BIq" secondAttribute="trailing" constant="8" id="KBF-QH-hdA"/>
+                            <constraint firstItem="vHB-Sn-kOe" firstAttribute="leading" secondItem="Hzq-G8-BIq" secondAttribute="trailing" constant="8" id="Reo-1T-8mc"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Hzq-G8-BIq" secondAttribute="leading" id="Vkc-0f-Fj1"/>
+                            <constraint firstItem="5aH-0E-GUF" firstAttribute="width" secondItem="roe-qD-xfK" secondAttribute="width" multiplier="0.5" id="hhU-dX-q4y"/>
+                            <constraint firstItem="YTA-24-pnh" firstAttribute="top" secondItem="5aH-0E-GUF" secondAttribute="bottom" constant="150" id="iBc-IK-Nzx"/>
+                            <constraint firstItem="vHB-Sn-kOe" firstAttribute="top" secondItem="Hzq-G8-BIq" secondAttribute="top" id="uSz-Zw-BFb"/>
+                            <constraint firstItem="pT7-Rp-q9u" firstAttribute="centerY" secondItem="roe-qD-xfK" secondAttribute="centerY" id="ugz-bi-ipx"/>
+                            <constraint firstItem="pT7-Rp-q9u" firstAttribute="centerX" secondItem="roe-qD-xfK" secondAttribute="centerX" id="vhe-fG-zF4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bioLabel" destination="HtL-Uk-WKv" id="1ne-6n-UdI"/>
+                        <outlet property="loadingView" destination="pT7-Rp-q9u" id="O7n-gm-abs"/>
+                        <outlet property="profilePicture" destination="Hzq-G8-BIq" id="WOA-Tt-vGZ"/>
+                        <outlet property="usernameLable" destination="vHB-Sn-kOe" id="XjP-Oc-5G7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Edo-dA-h6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1027" y="513"/>
+        </scene>
+        <!--Popular View Controller-->
+        <scene sceneID="GKS-Ii-ubQ">
+            <objects>
+                <viewController id="BLX-sy-3F7" customClass="PopularViewController" customModule="AsyncInsta" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iz2-MI-Ocb"/>
+                        <viewControllerLayoutGuide type="bottom" id="bHl-i8-eFc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zGV-YY-hsO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5En-EO-XXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1732" y="513"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Instagram" width="595" height="169"/>
+    </resources>
 </document>
