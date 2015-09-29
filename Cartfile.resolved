@@ -1,0 +1,5 @@
+github "Alamofire/Alamofire" "2.0.2"
+github "facebook/AsyncDisplayKit" "1.2.3"
+github "Quick/Nimble" "v1.0.0"
+github "Quick/Quick" "v0.6.0"
+github "SwiftyJSON/SwiftyJSON" "2.3.0"
