@@ -84,12 +84,15 @@ class Networking: NSObject {
         var popularItems: [InstagramItem] = []
         let data = json["data"]
         for num in 0..<data.count {
-            let userFull = data[num]["user"]["full_name"].string!
-            let username = data[num]["user"]["username"].string!
-            let profilePic = NSURL(string: data[num]["user"]["profile_picture"].string!)!
-            let img = NSURL(string: data[num]["images"]["standard_resolution"]["url"].string!)!
-            let caption = data[num]["caption"]["text"].string!
-            let item = InstagramItem(userFullName: userFull,
+            let id = data[num]["id"].string!
+            let userFull = data[num]["user"]["full_name"].string ?? ""
+            let username = data[num]["user"]["username"].string ?? ""
+            let profilePic = NSURL(string: data[num]["user"]["profile_picture"].string!)! //if no user img this is the default pic
+            let img = NSURL(string: data[num]["images"]["standard_resolution"]["url"].string!)! //image url better not be nil!
+            let caption = data[num]["caption"]["text"].string ?? "" //caption can be null
+            let item = InstagramItem(
+                id: id,
+                userFullName: userFull,
                 userName: username,
                 userProfilePic: profilePic,
                 imageURL: img,

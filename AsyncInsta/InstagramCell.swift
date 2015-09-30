@@ -12,7 +12,7 @@ class InstagramCell: ASCellNode {
     let username: ASTextNode
     let profilePic: ASNetworkImageNode
 
-    init(withInstagramItem: InstagramItem){
+    init(item: InstagramItem){
         img = ASNetworkImageNode(cache: cache, downloader: cache)
         caption = ASTextNode()
         profilePic = ASNetworkImageNode(cache: cache, downloader: cache)

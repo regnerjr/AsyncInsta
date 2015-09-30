@@ -26,7 +26,7 @@ class PopularViewController: UIViewController {
 
 extension PopularViewController: ASTableViewDataSource {
     func tableView(tableView: ASTableView!, nodeForRowAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-        return InstagramCell(withInstagramItem: data[indexPath.row])
+        return InstagramCell(item: data[indexPath.row])
     }
 
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +46,7 @@ extension PopularViewController: ASTableViewDelegate {
 
 
 struct InstagramItem {
+    let id: String
     let userFullName: String
     let userName: String
     let userProfilePic: NSURL
