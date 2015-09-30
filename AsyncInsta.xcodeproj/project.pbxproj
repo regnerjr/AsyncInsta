@@ -15,10 +15,13 @@
 		52552A221BB9FC82007C27B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52552A201BB9FC82007C27B1 /* LaunchScreen.storyboard */; };
 		52552A2D1BB9FC82007C27B1 /* AsyncInstaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52552A2C1BB9FC82007C27B1 /* AsyncInstaTests.swift */; };
 		52552A381BB9FC82007C27B1 /* AsyncInstaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52552A371BB9FC82007C27B1 /* AsyncInstaUITests.swift */; };
+		5274E7511BBB6BF400AD1CDD /* ImgManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274E7501BBB6BF400AD1CDD /* ImgManager.swift */; settings = {ASSET_TAGS = (); }; };
+		5285589C1BBB97FB00F9FCBD /* UserNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285589B1BBB97FB00F9FCBD /* UserNode.swift */; settings = {ASSET_TAGS = (); }; };
+		5287B7DF1BBC432D00EE7720 /* InstagramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287B7DE1BBC432D00EE7720 /* InstagramCell.swift */; settings = {ASSET_TAGS = (); }; };
+		5290DC731BBBAA1E00611D2E /* AsyncDisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387A91BBA0688001A4C41 /* AsyncDisplayKit.framework */; };
+		5290DC741BBBAA1E00611D2E /* AsyncDisplayKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387A91BBA0688001A4C41 /* AsyncDisplayKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52B387AB1BBA0688001A4C41 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387A81BBA0688001A4C41 /* Alamofire.framework */; };
 		52B387AC1BBA0688001A4C41 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387A81BBA0688001A4C41 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		52B387AD1BBA0688001A4C41 /* AsyncDisplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387A91BBA0688001A4C41 /* AsyncDisplayKit.framework */; };
-		52B387AE1BBA0688001A4C41 /* AsyncDisplayKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387A91BBA0688001A4C41 /* AsyncDisplayKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52B387AF1BBA0688001A4C41 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387AA1BBA0688001A4C41 /* SwiftyJSON.framework */; };
 		52B387B01BBA0688001A4C41 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52B387AA1BBA0688001A4C41 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52B387B71BBA0705001A4C41 /* Alamofire.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 52B387B41BBA0705001A4C41 /* Alamofire.framework.dSYM */; };
@@ -57,8 +60,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				52B387AC1BBA0688001A4C41 /* Alamofire.framework in Embed Frameworks */,
-				52B387AE1BBA0688001A4C41 /* AsyncDisplayKit.framework in Embed Frameworks */,
 				52B387B01BBA0688001A4C41 /* SwiftyJSON.framework in Embed Frameworks */,
+				5290DC741BBBAA1E00611D2E /* AsyncDisplayKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +95,10 @@
 		52552A331BB9FC82007C27B1 /* AsyncInstaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsyncInstaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52552A371BB9FC82007C27B1 /* AsyncInstaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncInstaUITests.swift; sourceTree = "<group>"; };
 		52552A391BB9FC82007C27B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5274E7501BBB6BF400AD1CDD /* ImgManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgManager.swift; sourceTree = "<group>"; };
+		5285589B1BBB97FB00F9FCBD /* UserNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNode.swift; sourceTree = "<group>"; };
+		5285589D1BBB9E8500F9FCBD /* AsyncInsta-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AsyncInsta-Bridging-Header.h"; sourceTree = "<group>"; };
+		5287B7DE1BBC432D00EE7720 /* InstagramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramCell.swift; sourceTree = "<group>"; };
 		52B387A81BBA0688001A4C41 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		52B387A91BBA0688001A4C41 /* AsyncDisplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AsyncDisplayKit.framework; path = Carthage/Build/iOS/AsyncDisplayKit.framework; sourceTree = "<group>"; };
 		52B387AA1BBA0688001A4C41 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -112,7 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B387AB1BBA0688001A4C41 /* Alamofire.framework in Frameworks */,
-				52B387AD1BBA0688001A4C41 /* AsyncDisplayKit.framework in Frameworks */,
+				5290DC731BBBAA1E00611D2E /* AsyncDisplayKit.framework in Frameworks */,
 				52B387AF1BBA0688001A4C41 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,17 +166,21 @@
 		52552A131BB9FC82007C27B1 /* AsyncInsta */ = {
 			isa = PBXGroup;
 			children = (
+				5287B7DE1BBC432D00EE7720 /* InstagramCell.swift */,
+				5274E7501BBB6BF400AD1CDD /* ImgManager.swift */,
 				52B387BF1BBA0B4A001A4C41 /* Persistence.swift */,
 				52552A141BB9FC82007C27B1 /* AppDelegate.swift */,
 				52B387C51BBADBD1001A4C41 /* Networking.swift */,
 				52552A161BB9FC82007C27B1 /* ViewController.swift */,
 				52552A181BB9FC82007C27B1 /* Main.storyboard */,
 				52B387C71BBB1501001A4C41 /* UserViewController.swift */,
+				5285589B1BBB97FB00F9FCBD /* UserNode.swift */,
 				52B387C31BBA6ABD001A4C41 /* PopularViewController.swift */,
 				52552A1E1BB9FC82007C27B1 /* Assets.xcassets */,
 				52552A201BB9FC82007C27B1 /* LaunchScreen.storyboard */,
 				52552A231BB9FC82007C27B1 /* Info.plist */,
 				52552A1B1BB9FC82007C27B1 /* AsyncInsta.xcdatamodeld */,
+				5285589D1BBB9E8500F9FCBD /* AsyncInsta-Bridging-Header.h */,
 				52B387BE1BBA08CA001A4C41 /* Frameworks */,
 			);
 			path = AsyncInsta;
@@ -274,6 +285,7 @@
 		52552A091BB9FC82007C27B1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = johnregner;
 				TargetAttributes = {
@@ -363,6 +375,9 @@
 			files = (
 				52B387C81BBB1501001A4C41 /* UserViewController.swift in Sources */,
 				52552A1D1BB9FC82007C27B1 /* AsyncInsta.xcdatamodeld in Sources */,
+				5274E7511BBB6BF400AD1CDD /* ImgManager.swift in Sources */,
+				5285589C1BBB97FB00F9FCBD /* UserNode.swift in Sources */,
+				5287B7DF1BBC432D00EE7720 /* InstagramCell.swift in Sources */,
 				52B387C41BBA6ABD001A4C41 /* PopularViewController.swift in Sources */,
 				52B387C01BBA0B4A001A4C41 /* Persistence.swift in Sources */,
 				52B387C61BBADBD1001A4C41 /* Networking.swift in Sources */,
@@ -509,14 +524,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = AsyncInsta/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnregner.AsyncInsta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AsyncInsta/AsyncInsta-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -524,14 +543,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = AsyncInsta/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.johnregner.AsyncInsta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AsyncInsta/AsyncInsta-Bridging-Header.h";
 			};
 			name = Release;
 		};

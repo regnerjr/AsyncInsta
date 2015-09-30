@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -42,7 +41,8 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Qv-9U-D2Q" secondAttribute="height" multiplier="595:169" id="qeX-27-ug1"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="5" maxX="5" maxY="5"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="3"/>
                                 <size key="titleShadowOffset" width="14" height="14"/>
                                 <state key="normal" image="Instagram">
                                     <color key="titleShadowColor" red="0.26666666666666666" green="0.44313725490196076" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
@@ -90,27 +90,6 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hzq-G8-BIq">
-                                <rect key="frame" x="20" y="28" width="198" height="198"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Hzq-G8-BIq" secondAttribute="height" id="ou9-qi-Oft"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHB-Sn-kOe">
-                                <rect key="frame" x="226" y="28" width="125" height="33"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtL-Uk-WKv">
-                                <rect key="frame" x="226" y="69" width="21" height="17"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5aH-0E-GUF">
                                 <rect key="frame" x="150" y="420" width="300" height="30"/>
                                 <animations/>
@@ -128,26 +107,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pT7-Rp-q9u" firstAttribute="width" secondItem="roe-qD-xfK" secondAttribute="width" multiplier="0.33" id="6PV-Dr-JAS"/>
-                            <constraint firstItem="Hzq-G8-BIq" firstAttribute="width" secondItem="roe-qD-xfK" secondAttribute="width" multiplier="0.33" id="6cv-os-e65"/>
                             <constraint firstItem="5aH-0E-GUF" firstAttribute="centerX" secondItem="roe-qD-xfK" secondAttribute="centerX" id="Djh-6x-12l"/>
-                            <constraint firstItem="Hzq-G8-BIq" firstAttribute="top" secondItem="jge-yN-kCj" secondAttribute="bottom" constant="8" id="EKL-nU-zFd"/>
-                            <constraint firstItem="HtL-Uk-WKv" firstAttribute="top" secondItem="vHB-Sn-kOe" secondAttribute="bottom" constant="8" id="FqV-gi-ZpC"/>
                             <constraint firstItem="pT7-Rp-q9u" firstAttribute="height" secondItem="roe-qD-xfK" secondAttribute="height" multiplier="0.2" id="J0V-t3-4Xg"/>
-                            <constraint firstItem="HtL-Uk-WKv" firstAttribute="leading" secondItem="Hzq-G8-BIq" secondAttribute="trailing" constant="8" id="KBF-QH-hdA"/>
-                            <constraint firstItem="vHB-Sn-kOe" firstAttribute="leading" secondItem="Hzq-G8-BIq" secondAttribute="trailing" constant="8" id="Reo-1T-8mc"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Hzq-G8-BIq" secondAttribute="leading" id="Vkc-0f-Fj1"/>
                             <constraint firstItem="5aH-0E-GUF" firstAttribute="width" secondItem="roe-qD-xfK" secondAttribute="width" multiplier="0.5" id="hhU-dX-q4y"/>
                             <constraint firstItem="YTA-24-pnh" firstAttribute="top" secondItem="5aH-0E-GUF" secondAttribute="bottom" constant="150" id="iBc-IK-Nzx"/>
-                            <constraint firstItem="vHB-Sn-kOe" firstAttribute="top" secondItem="Hzq-G8-BIq" secondAttribute="top" id="uSz-Zw-BFb"/>
                             <constraint firstItem="pT7-Rp-q9u" firstAttribute="centerY" secondItem="roe-qD-xfK" secondAttribute="centerY" id="ugz-bi-ipx"/>
                             <constraint firstItem="pT7-Rp-q9u" firstAttribute="centerX" secondItem="roe-qD-xfK" secondAttribute="centerX" id="vhe-fG-zF4"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bioLabel" destination="HtL-Uk-WKv" id="1ne-6n-UdI"/>
                         <outlet property="loadingView" destination="pT7-Rp-q9u" id="O7n-gm-abs"/>
-                        <outlet property="profilePicture" destination="Hzq-G8-BIq" id="WOA-Tt-vGZ"/>
-                        <outlet property="usernameLable" destination="vHB-Sn-kOe" id="XjP-Oc-5G7"/>
+                        <outlet property="viewPopularPicturesButton" destination="5aH-0E-GUF" id="2s3-qv-crQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Edo-dA-h6e" userLabel="First Responder" sceneMemberID="firstResponder"/>

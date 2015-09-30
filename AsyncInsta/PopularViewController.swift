@@ -3,42 +3,35 @@ import AsyncDisplayKit
 
 class PopularViewController: UIViewController {
 
-    var data = [InstagramItems]()
+    var data = [InstagramItem]()
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
 
     lazy var table: ASTableView = {
         let tv = ASTableView(frame: .zero, style: .Plain, asyncDataFetching: true)
+        tv.frame = self.view.frame
         tv.asyncDelegate = self
         tv.asyncDataSource = self
         return tv
     }()
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         ad.networking.getPopularImages{
             self.data = $0
+            self.view.setNeedsLayout()
         }
-        //add table as subview
-        //configure constraints for table
-        //set table delegate and datasource
-
+        super.viewDidLoad()
+        view.addSubview(table)
     }
 }
 
 extension PopularViewController: ASTableViewDataSource {
     func tableView(tableView: ASTableView!, nodeForRowAtIndexPath indexPath: NSIndexPath!) -> ASCellNode! {
-        return ASCellNode()
+        return InstagramCell(withInstagramItem: data[indexPath.row])
     }
-//    func tableViewLockDataSource(tableView: ASTableView!) {
-//
-//    }
-//    func tableViewUnlockDataSource(tableView: ASTableView!) {
-//        <#code#>
-//    }
+
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-
 
 }
 
@@ -52,8 +45,10 @@ extension PopularViewController: ASTableViewDelegate {
 }
 
 
-struct InstagramItems {
-    let imageURL: NSURL
+struct InstagramItem {
+    let userFullName: String
     let userName: String
-    let comment: String
+    let userProfilePic: NSURL
+    let imageURL: NSURL
+    let caption: String
 }

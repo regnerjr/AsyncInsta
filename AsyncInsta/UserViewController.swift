@@ -4,29 +4,59 @@ import Alamofire
 
 class UserViewController: UIViewController {
 
+    @IBOutlet weak var viewPopularPicturesButton: UIButton!
     @IBOutlet var loadingView: UIView!
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     let loadingLabel = UILabel(frame: .zero)
 
-    @IBOutlet var profilePicture: ASImageNode!
-    @IBOutlet var usernameLable: UILabel!
-    @IBOutlet var bioLabel: UILabel!
+    var profilePicture = ASNetworkImageNode()
+    var usernameLabel = ASTextNode()
+    var bioLabel = ASTextNode()
 
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
 
-    var user: User? {
-        didSet {
-            finishedLoading()
-        }
-    }
+    var user: User?
+    var userNode: UserNode!
+    var userNodeSetupStarted = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLoadingView()
-        ad.networking.getUserProfile{
+        ad.networking.getUserProfile {
             self.user = $0
+            self.finishedLoading()
+            self.view.setNeedsLayout() //recalculate layout to show user profile
         }
     }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if !userNodeSetupStarted && user != nil { //ensure we have a user, then layout stuff
+            let width = view.bounds.width * (8.0/9.0)
+            let height = view.bounds.height * (1.0/2.0)
+            addUserNodeAsynchronously(CGRect(x: 0, y: 0, width: width, height: height).integral) //fit user profile in top half of screen
+            userNodeSetupStarted = true
+        }
+    }
+
+    func addUserNodeAsynchronously(containerRect: CGRect){
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)) {
+            let userNode = self.createUserNode(containerRect)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.view.addSubview(userNode.view)
+            }
+        }
+    }
+    
+    func createUserNode(containerRect: CGRect) -> UserNode{
+        userNode = UserNode(user: user!)
+        userNode.measure(containerRect.size)
+        let size = userNode.calculatedSize
+        let origin = CGPointZero
+        userNode.frame = CGRect(origin: origin, size: size)
+        return userNode
+    }
+
 
     func finishedLoading(){
         configureUser()
@@ -38,7 +68,7 @@ class UserViewController: UIViewController {
         loadingLabel.translatesAutoresizingMaskIntoConstraints = false
         spinner.translatesAutoresizingMaskIntoConstraints = false
 
-        loadingView.layer.cornerRadius = 40
+        loadingView.layer.cornerRadius = 15
         loadingView.addSubview(spinner)
         loadingLabel.text = "Loading User Profile"
         loadingView.addSubview(loadingLabel)
@@ -52,8 +82,22 @@ class UserViewController: UIViewController {
     }
 
     private func configureUser(){
-        usernameLable.text = user?.username
-        bioLabel.text = user?.bio
+        guard let user = user else {
+            //Hmm could not get user?
+            //lets just bail for now
+            return
+        }
+
+        usernameLabel.attributedString = NSAttributedString(string: user.username)
+        view.addSubnode(usernameLabel)
+
+        bioLabel.attributedString = NSAttributedString(string: user.bio)
+        view.addSubnode(bioLabel)
+
+        //start image Spinner
+//        let img = ASNetworkImageNode()
+        profilePicture.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
+        profilePicture.URL = user.profilePicture
         let backgroundQueue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
         dispatch_async(backgroundQueue){
         }
@@ -65,6 +109,7 @@ class UserViewController: UIViewController {
     }
 
 }
+
 
 struct User {
     let id: String

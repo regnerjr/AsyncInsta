@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var persistence = Persistence()
     var networking = Networking()
+    var cache = ImageManager()
 
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         guard let source = options[UIApplicationOpenURLOptionsSourceApplicationKey] as? String  else {

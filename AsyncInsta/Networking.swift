@@ -12,7 +12,7 @@ enum Endpoint {
 
 class Networking: NSObject {
 
-    func getPopularImages(configuration: (([InstagramItems]) -> Void)) {
+    func getPopularImages(configuration: (([InstagramItem]) -> Void)) {
 
         guard let token = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.AuthToken.rawValue) else {
             print("No Token!\n Bailing Early")
@@ -73,18 +73,30 @@ class Networking: NSObject {
     }
 
 
-    func makeInstagramItemsFromJson(endpoint: Endpoint, json: JSON) -> [InstagramItems]{
+    func makeInstagramItemsFromJson(endpoint: Endpoint, json: JSON) -> [InstagramItem]{
         switch endpoint {
         case .Popular:
             return parsePopular(json)
         }
     }
 
-    func parsePopular(json: JSON) -> [InstagramItems]{
-        if let poster = json["data"][0]["user"]["full_name"].string{
-            print("Posted By: \(poster)")
+    func parsePopular(json: JSON) -> [InstagramItem]{
+        var popularItems: [InstagramItem] = []
+        let data = json["data"]
+        for num in 0..<data.count {
+            let userFull = data[num]["user"]["full_name"].string!
+            let username = data[num]["user"]["username"].string!
+            let profilePic = NSURL(string: data[num]["user"]["profile_picture"].string!)!
+            let img = NSURL(string: data[num]["images"]["standard_resolution"]["url"].string!)!
+            let caption = data[num]["caption"]["text"].string!
+            let item = InstagramItem(userFullName: userFull,
+                userName: username,
+                userProfilePic: profilePic,
+                imageURL: img,
+                caption: caption)
+            popularItems.append(item)
         }
-        return []
+        return popularItems
     }
 
     func instagramGETWithURL(url: String) {

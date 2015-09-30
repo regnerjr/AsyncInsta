@@ -31,10 +31,9 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
         guard let _ = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.AuthToken.rawValue) else {
             return
         }
-        self.svc.dismissViewControllerAnimated(true, completion: { [weak self] in
-            self?.performSegueWithIdentifier("UserIsLoggedIn", sender: nil)
-        })
-        loginButton.hidden = true
+        self.svc.dismissViewControllerAnimated(true){
+            self.performSegueWithIdentifier("UserIsLoggedIn", sender: nil)
+        }
 
     }
     
@@ -45,7 +44,7 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
 
     @IBAction func dontWantToLogin(sender: UIButton) {
         let alert = UIAlertController(title: "Too Bad", message: "This App Currently only support the Authenticated Instagram Information", preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "Oh Well", style: .Default, handler: nil)
+        let action = UIAlertAction(title: "¯\\_(ツ)_/¯", style: .Default, handler: nil)
         alert.addAction(action)
         presentViewController(alert, animated: true, completion: nil)
     }
