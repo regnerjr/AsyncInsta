@@ -6,9 +6,9 @@ class UserNode: ASDisplayNode {
     let profileImage: ASNetworkImageNode
     let userNameLabel: ASTextNode
     let userBioLabel: ASTextNode
-
+    let imgCache = (UIApplication.sharedApplication().delegate as! AppDelegate).cache
     init(user: User){
-        profileImage = ASNetworkImageNode()
+        profileImage = ASNetworkImageNode(cache: imgCache, downloader: imgCache)
         userNameLabel = ASTextNode()
         userBioLabel = ASTextNode()
         super.init()

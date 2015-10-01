@@ -9,10 +9,6 @@ class UserViewController: UIViewController {
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     let loadingLabel = UILabel(frame: .zero)
 
-    var profilePicture = ASNetworkImageNode()
-    var usernameLabel = ASTextNode()
-    var bioLabel = ASTextNode()
-
     let ad = UIApplication.sharedApplication().delegate as! AppDelegate
 
     var user: User?
@@ -62,7 +58,6 @@ class UserViewController: UIViewController {
 
 
     func finishedLoading(){
-        configureUser()
         removeLoadingSpinner()
     }
 
@@ -82,28 +77,6 @@ class UserViewController: UIViewController {
         loadingLabel.topAnchor.constraintEqualToAnchor(spinner.bottomAnchor, constant: 8).active = true
 
         spinner.startAnimating()
-    }
-
-    private func configureUser(){
-        guard let user = user else {
-            //Hmm could not get user?
-            //lets just bail for now
-            return
-        }
-
-        usernameLabel.attributedString = NSAttributedString(string: user.username)
-        view.addSubnode(usernameLabel)
-
-        bioLabel.attributedString = NSAttributedString(string: user.bio)
-        view.addSubnode(bioLabel)
-
-        //start image Spinner
-//        let img = ASNetworkImageNode()
-        profilePicture.backgroundColor = ASDisplayNodeDefaultPlaceholderColor();
-        profilePicture.URL = user.profilePicture
-        let backgroundQueue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
-        dispatch_async(backgroundQueue){
-        }
     }
 
     private func removeLoadingSpinner(){
