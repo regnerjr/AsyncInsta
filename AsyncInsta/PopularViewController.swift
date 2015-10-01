@@ -11,6 +11,10 @@ class PopularViewController: UIViewController {
         tv.frame = self.view.frame
         tv.asyncDelegate = self
         tv.asyncDataSource = self
+//        tv.tuningParametersForRangeType(ASLayoutRangeType.Render))
+//        tv.tuningParametersForRangeType(ASLayoutRangeType.Preload))
+        tv.setTuningParameters(ASRangeTuningParameters(leadingBufferScreenfuls: 4.0, trailingBufferScreenfuls: 4.0), forRangeType: .Preload)
+        tv.leadingScreensForBatching = 3.0
         return tv
     }()
 
@@ -39,6 +43,7 @@ extension PopularViewController: ASTableViewDataSource {
 }
 
 extension PopularViewController: ASTableViewDelegate {
+
     func tableView(tableView: ASTableView!, willBeginBatchFetchWithContext context: ASBatchContext!) {
         print("Begining Fetch with context \(context)")
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)){
@@ -68,7 +73,6 @@ extension PopularViewController: ASTableViewDelegate {
     }
 }
 
-
 struct InstagramItem: Hashable, Equatable {
     let id: String
     let userFullName: String
@@ -87,8 +91,8 @@ struct InstagramItem: Hashable, Equatable {
         self.caption = caption
         hashValue = id.hashValue
     }
-
 }
+
 func ==(lhs: InstagramItem, rhs: InstagramItem) -> Bool{
     return lhs.hashValue == rhs.hashValue
 }
