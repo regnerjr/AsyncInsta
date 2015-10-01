@@ -50,6 +50,7 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
                     let fm = NSFileManager.defaultManager()
                     guard let
                         cachesURL = fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask).first,
+                        //FIXME: Let's not traverse the contents of this folder every time a download finishes
                         // any way to not read this entire folder ever time we download a new file, Takes a long time
                         contents = try? fm.contentsOfDirectoryAtURL(cachesURL, includingPropertiesForKeys: nil, options: [.SkipsHiddenFiles])
                     else {
