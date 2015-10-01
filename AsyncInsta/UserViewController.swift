@@ -22,10 +22,13 @@ class UserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLoadingView()
-        ad.networking.getUserProfile {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)){
+        self.ad.networking.getUserProfile {
             self.user = $0
+            dispatch_async(dispatch_get_main_queue()){
             self.finishedLoading()
             self.view.setNeedsLayout() //recalculate layout to show user profile
+            }}
         }
     }
 

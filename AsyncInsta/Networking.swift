@@ -57,11 +57,6 @@ class Networking: NSObject {
         }
     }
 
-    func downloadImageAtURL(url: String, toDocumentsDirectoryWithCallback callback: (UIImage -> Void)){
-
-
-    }
-
     func makeInstagramUserFromJSON(json: JSON) -> User? {
         let profile = json["data"]
         let id = profile["id"].string!
@@ -76,6 +71,7 @@ class Networking: NSObject {
     func makeInstagramItemsFromJson(endpoint: Endpoint, json: JSON) -> [InstagramItem]{
         switch endpoint {
         case .Popular:
+            //should figure out how to parse this json on a background thread
             return parsePopular(json)
         }
     }
@@ -84,12 +80,14 @@ class Networking: NSObject {
         var popularItems: [InstagramItem] = []
         let data = json["data"]
         for num in 0..<data.count {
-            let id = data[num]["id"].string!
-            let userFull = data[num]["user"]["full_name"].string ?? ""
-            let username = data[num]["user"]["username"].string ?? ""
-            let profilePic = NSURL(string: data[num]["user"]["profile_picture"].string!)! //if no user img this is the default pic
-            let img = NSURL(string: data[num]["images"]["standard_resolution"]["url"].string!)! //image url better not be nil!
-            let caption = data[num]["caption"]["text"].string ?? "" //caption can be null
+            let new = data[num]
+            let user = new["user"]
+            let id = new["id"].string!
+            let userFull = user["full_name"].string ?? ""
+            let username = user["username"].string ?? ""
+            let profilePic = NSURL(string: user["profile_picture"].string!)! //if no user img this is the default pic
+            let img = NSURL(string: new["images"]["standard_resolution"]["url"].string!)! //image url better not be nil!
+            let caption = new["caption"]["text"].string ?? "" //caption can be null
             let item = InstagramItem(
                 id: id,
                 userFullName: userFull,

@@ -1,15 +1,16 @@
 //
-//  AsyncInstaTests.swift
-//  AsyncInstaTests
+//  AsyncInstaTests_2.swift
+//  AsyncInstaTests_2
 //
-//  Created by John Regner on 9/28/15.
+//  Created by John Regner on 9/30/15.
 //  Copyright © 2015 johnregner. All rights reserved.
 //
 
 import XCTest
+import SwiftyJSON
 @testable import AsyncInsta
 
-class AsyncInstaTests: XCTestCase {
+class AsyncInstaTests_2: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -27,9 +28,14 @@ class AsyncInstaTests: XCTestCase {
     }
     
     func testPerformanceExample() {
+        let testBundle = NSBundle(forClass: self.dynamicType)
+        let path = testBundle.pathForResource("jsonData", ofType: "plist")
+        let restored = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! NSData
+        let json = JSON(data: restored)
         // This is an example of a performance test case.
+        let n = Networking()
         self.measureBlock {
-            // Put the code you want to measure the time of here.
+            n.makeInstagramItemsFromJson(.Popular, json: json)
         }
     }
     

@@ -7,18 +7,15 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
     let cache = NSCache()
 
     func fetchCachedImageWithURL(URL: NSURL!, callbackQueue: dispatch_queue_t!, completion: ((CGImage!) -> Void)!) {
-        print("Fetching image from cache for URL: \(URL!)")
         guard let URL = URL,
             img = cache.objectForKey(URL.absoluteString) as? UIImage,
             cgImage = img.CGImage
             else {
-                print("Cache Miss")
                 dispatch_async(callbackQueue) {
                     completion(nil)
                 }
                 return
         }
-        print("Cache HIT!!!")
         cache.setObject(img, forKey: URL.absoluteString) //refresh cache
         dispatch_async(callbackQueue, { //callback
             completion(cgImage)
@@ -26,7 +23,6 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
     }
 
     func downloadImageWithURL(URL: NSURL!, callbackQueue: dispatch_queue_t!, downloadProgressBlock: ((CGFloat) -> Void)!, completion: ((CGImage!, NSError!) -> Void)!) -> AnyObject! {
-        print("Downloading image for URL: \(URL!)")
         let queue = callbackQueue != nil ? callbackQueue! : dispatch_get_main_queue()! //if que is nill use main queue
 
         guard let url = URL else {
@@ -54,14 +50,17 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
                     let fm = NSFileManager.defaultManager()
                     guard let
                         cachesURL = fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask).first,
+                        // any way to not read this entire folder ever time we download a new file, Takes a long time
                         contents = try? fm.contentsOfDirectoryAtURL(cachesURL, includingPropertiesForKeys: nil, options: [.SkipsHiddenFiles])
                     else {
                         completion(nil, NSError(domain: "CouldNotFindFileError", code: 404, userInfo: nil))
                         return
                     }
-                    let matches = try? contents.filter{$0.lastPathComponent == url.lastPathComponent}
+                    //FIXME: Ask for help with this one
+                    // this guy could be sped up too, no filtering needed if we did not have to look at the whole folder to see the file we just downloaded
+                    let matches = contents.filter{$0.lastPathComponent == url.lastPathComponent}
                     guard let
-                        path = matches?.first?.path,
+                        path = matches.first?.path,
                         img = UIImage(contentsOfFile: path)
                     else {
                         completion(nil, NSError(domain: "CouldNotFindFileError", code: 404, userInfo: nil))

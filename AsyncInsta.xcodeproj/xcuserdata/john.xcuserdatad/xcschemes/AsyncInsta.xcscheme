@@ -48,6 +48,16 @@
                ReferencedContainer = "container:AsyncInsta.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5287B7E81BBCFB5500EE7720"
+               BuildableName = "AsyncInstaTests_2.xctest"
+               BlueprintName = "AsyncInstaTests_2"
+               ReferencedContainer = "container:AsyncInsta.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
