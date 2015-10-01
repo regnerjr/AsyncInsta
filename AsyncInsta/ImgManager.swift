@@ -4,11 +4,12 @@ import Alamofire
 
 class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
 
-    let cache = NSCache()
+    let cache = NSURLCache.sharedURLCache()
 
     func fetchCachedImageWithURL(URL: NSURL!, callbackQueue: dispatch_queue_t!, completion: ((CGImage!) -> Void)!) {
         guard let URL = URL,
-            img = cache.objectForKey(URL.absoluteString) as? UIImage,
+            response = cache.cachedResponseForRequest(NSURLRequest(URL: URL)),
+            img = UIImage(data: response.data),
             cgImage = img.CGImage
             else {
                 dispatch_async(callbackQueue) {
@@ -16,7 +17,8 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
                 }
                 return
         }
-        cache.setObject(img, forKey: URL.absoluteString) //refresh cache
+        //Do I need to do this?
+        cache.storeCachedResponse(response, forRequest: NSURLRequest(URL: URL)) //refresh cache
         dispatch_async(callbackQueue, { //callback
             completion(cgImage)
         })
@@ -32,48 +34,28 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
             return nil
         }
 
-        let cachesDir = Alamofire.Request.suggestedDownloadDestination(directory: .CachesDirectory, domain: .UserDomainMask)
-        Alamofire.download(.GET, url.absoluteString, destination: cachesDir)
-            .progress { (bytesRead, totalBytesRead, totalBytesExpected) -> Void in
-                dispatch_async(queue, {
-                    downloadProgressBlock?(CGFloat(totalBytesRead/totalBytesExpected))
-                })
-            }
-            .response { (request, response, _, error) -> Void in
-                if error != nil || response?.statusCode != 200 {
-                    //crap some error
-                    dispatch_async(queue){
-                        completion(nil, error! as NSError)
-                    }
-                }
+        Alamofire.request(.GET, url)
+        .response { (request, response, data, error) -> Void in
+            if error != nil || response?.statusCode != 200 {
+                //crap some error
                 dispatch_async(queue){
-                    let fm = NSFileManager.defaultManager()
-                    guard let
-                        cachesURL = fm.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask).first,
-                        //FIXME: Let's not traverse the contents of this folder every time a download finishes
-                        // any way to not read this entire folder ever time we download a new file, Takes a long time
-                        contents = try? fm.contentsOfDirectoryAtURL(cachesURL, includingPropertiesForKeys: nil, options: [.SkipsHiddenFiles])
-                    else {
-                        completion(nil, NSError(domain: "CouldNotFindFileError", code: 404, userInfo: nil))
-                        return
-                    }
-                    //FIXME: Ask for help with this one
-                    // this guy could be sped up too, no filtering needed if we did not have to look at the whole folder to see the file we just downloaded
-                    let matches = contents.filter{$0.lastPathComponent == url.lastPathComponent}
-                    guard let
-                        path = matches.first?.path,
-                        img = UIImage(contentsOfFile: path)
-                    else {
-                        completion(nil, NSError(domain: "CouldNotFindFileError", code: 404, userInfo: nil))
-                        return
-                    }
-                    //save in cache
-                    self.cache.setObject(img, forKey: url.absoluteString)
-                    completion(img.CGImage, nil)
+                    completion(nil, error! as NSError)
                 }
+            }
+            guard let
+                request = request,
+                response = response,
+                data = data
+            else {
+                print("Don't cache this one Something is wrong. ")
+                return
+            }
+            self.cache.storeCachedResponse(NSCachedURLResponse(response: response, data: data), forRequest: request)
+            let img = UIImage(data: data)!
+            completion(img.CGImage, nil)
 
         }
-        return url.absoluteString //for use in canceling the download
+        return url.absoluteString
     }
 
     func cancelImageDownloadForIdentifier(downloadIdentifier: AnyObject!) {

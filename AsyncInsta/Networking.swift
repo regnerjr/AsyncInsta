@@ -22,7 +22,7 @@ class Networking: NSObject {
         Alamofire.request(.GET, popularURL, parameters: ["access_token": token]).response  { [weak self]
             (req: NSURLRequest?, resp: NSHTTPURLResponse?, data: NSData?, err: ErrorType?) -> Void in
             if err != nil {
-                print("OMG what happened!")
+                print("Error requesting Popular Images")
                 print("\(resp?.statusCode)")
                 print("\((err! as NSError).localizedDescription)")
             }
