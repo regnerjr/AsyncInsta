@@ -19,7 +19,7 @@ class PopularViewController: UIViewController {
     }()
 
     override func viewDidLoad() {
-        ad.networking.getPopularImages{
+        ad.networking.getPopularItems(dispatch_get_main_queue()){
             self.data = self.data.union($0)
             self.view.setNeedsLayout()
             self.table.reloadData()
@@ -46,24 +46,17 @@ extension PopularViewController: ASTableViewDelegate {
 
     func tableView(tableView: ASTableView!, willBeginBatchFetchWithContext context: ASBatchContext!) {
         print("Begining Fetch with context \(context)")
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)){
-        self.ad.networking.getPopularImages{
+        self.ad.networking.getPopularItems{
             let initialCount = self.data.count
             let newItems = Set<InstagramItem>($0)
-            print("Data already contains \(newItems.filter{ self.data.contains($0)}.map{ $0.id })")
             let onlyNew = newItems.subtract(self.data)
-            print("\(onlyNew.map{$0.id})")
-            print("OnlyNew: \(onlyNew.map({$0.id}))")
             self.data.unionInPlace(onlyNew)
             let afterCount = self.data.count
-            print("Added \(afterCount - initialCount) Items")
             let indexPaths = (initialCount..<afterCount).map{ NSIndexPath(forRow: $0, inSection: 0)}
             indexPaths.forEach{ print($0)}
             dispatch_async(dispatch_get_main_queue()){
                 self.table.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
-
                 context.completeBatchFetching(true)
-            }
             }
         }
     }

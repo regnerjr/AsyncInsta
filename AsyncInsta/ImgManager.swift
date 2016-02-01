@@ -7,8 +7,9 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
     let cache = NSURLCache.sharedURLCache()
 
     func fetchCachedImageWithURL(URL: NSURL!, callbackQueue: dispatch_queue_t!, completion: ((CGImage!) -> Void)!) {
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
         guard let URL = URL,
-            response = cache.cachedResponseForRequest(NSURLRequest(URL: URL)),
+            response = self.cache.cachedResponseForRequest(NSURLRequest(URL: URL)),
             img = UIImage(data: response.data),
             cgImage = img.CGImage
             else {
@@ -17,11 +18,12 @@ class ImageManager: NSObject, ASImageCacheProtocol, ASImageDownloaderProtocol {
                 }
                 return
         }
-        //Do I need to do this?
-        cache.storeCachedResponse(response, forRequest: NSURLRequest(URL: URL)) //refresh cache
+        //FIXME: Do I need to do this?
+        self.cache.storeCachedResponse(response, forRequest: NSURLRequest(URL: URL)) //refresh cache
         dispatch_async(callbackQueue, { //callback
             completion(cgImage)
         })
+    }
     }
 
     func downloadImageWithURL(URL: NSURL!, callbackQueue: dispatch_queue_t!, downloadProgressBlock: ((CGFloat) -> Void)!, completion: ((CGImage!, NSError!) -> Void)!) -> AnyObject! {

@@ -12,14 +12,15 @@ enum Endpoint {
 
 class Networking: NSObject {
 
-    func getPopularImages(configuration: (([InstagramItem]) -> Void)) {
+    func getPopularItems(queue: dispatch_queue_t = dispatch_get_main_queue(),configuration: (([InstagramItem]) -> Void)) {
 
         guard let token = NSUserDefaults.standardUserDefaults().stringForKey(Defaults.AuthToken.rawValue) else {
             print("No Token!\n Bailing Early")
             return
         }
-
-        Alamofire.request(.GET, popularURL, parameters: ["access_token": token]).response  { [weak self]
+        //do this in teh background
+        let bgqueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)
+        Alamofire.request(.GET, popularURL, parameters: ["access_token": token]).response(queue: bgqueue)  { [weak self]
             (req: NSURLRequest?, resp: NSHTTPURLResponse?, data: NSData?, err: ErrorType?) -> Void in
             if err != nil {
                 print("Error requesting Popular Images")
